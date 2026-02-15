@@ -199,6 +199,11 @@ img {
     display: none;
     font-size: 1.5rem;
     cursor: pointer;
+    transition: transform 0.3s ease;
+}
+
+.menu-toggle:hover {
+    transform: scale(1.1);
 }
 
 /* Hero Section */
@@ -582,5 +587,59 @@ textarea.form-control {
     /* Better portfolio grid on small screens */
     .portfolio-grid {
         grid-template-columns: 1fr;
+    }
+
+    /* Fix: Add background to navbar on mobile to prevent overlap issues */
+    .navbar {
+        background: var(--white);
+        box-shadow: var(--shadow-sm);
+        padding: 15px 0;
+    }
+}
+
+/* Fix Mobile Navigation */
+@media (max-width: 768px) {
+    .menu-toggle {
+        display: block;
+        color: var(--primary-dark);
+    }
+
+    .nav-links {
+        display: none;
+        position: absolute;
+        top: 70px;
+        /* Adjust based on navbar height */
+        left: 0;
+        width: 100%;
+        flex-direction: column;
+        background: var(--white);
+        padding: 20px;
+        box-shadow: var(--shadow-md);
+        border-top: 1px solid rgba(0, 0, 0, 0.05);
+        gap: 15px;
+    }
+
+    .nav-links.active {
+        /* Class toggled by JS */
+        display: flex !important;
+        /* Force display flex when active */
+    }
+
+    .nav-link {
+        display: block;
+        padding: 10px;
+        text-align: center;
+    }
+
+    .nav-link::after {
+        bottom: 0;
+        width: 0;
+        left: 50%;
+        transform: translateX(-50%);
+    }
+
+    .nav-link:hover::after,
+    .nav-link.active::after {
+        width: 50px;
     }
 }

@@ -314,27 +314,27 @@
             }
         });
 
-        // Mobile Toggle (Simple implementation)
+        // Mobile Toggle (Improved implementation)
         const menuToggle = document.querySelector('.menu-toggle');
         const navLinks = document.querySelector('.nav-links');
+        const navLinksItems = document.querySelectorAll('.nav-link');
 
         if (menuToggle) {
             menuToggle.addEventListener('click', () => {
-                if (navLinks.style.display === 'flex') {
-                    navLinks.style.display = 'none';
-                } else {
-                    navLinks.style.display = 'flex';
-                    navLinks.style.flexDirection = 'column';
-                    navLinks.style.position = 'absolute';
-                    navLinks.style.top = '70px';
-                    navLinks.style.left = '0';
-                    navLinks.style.width = '100%';
-                    navLinks.style.background = '#fff';
-                    navLinks.style.padding = '20px';
-                    navLinks.style.boxShadow = '0 10px 20px rgba(0,0,0,0.1)';
-                }
+                navLinks.classList.toggle('active');
+                
+                // Animate hamburger icon (optional, can be added later if needed)
+                menuToggle.classList.toggle('active');
             });
         }
+
+        // Close menu when a link is clicked
+        navLinksItems.forEach(link => {
+            link.addEventListener('click', () => {
+                navLinks.classList.remove('active');
+                if (menuToggle) menuToggle.classList.remove('active');
+            });
+        });
 
         // Scroll Reveal Animation (Intersection Observer)
         const revealElements = document.querySelectorAll('.reveal');
